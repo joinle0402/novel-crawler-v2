@@ -1,0 +1,216 @@
+
+--- 2026-09-02T08:32:57.023548+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 669, in crawl_novel
+    upsert_chapter(novel_id, ch.site_id, idx, ch.title, content)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 247, in upsert_chapter
+    sync_tts_chars_total_from_content(chapter_id, content, db_path=db_path)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 413, in sync_tts_chars_total_from_content
+    _repair_tts_chars_total(conn, chapter_id, content, row)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 389, in _repair_tts_chars_total
+    conn.execute(
+sqlite3.OperationalError: database is locked
+
+--- 2026-09-02T08:39:05.846747+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 669, in crawl_novel
+    upsert_chapter(novel_id, ch.site_id, idx, ch.title, content)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 247, in upsert_chapter
+    sync_tts_chars_total_from_content(chapter_id, content, db_path=db_path)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 413, in sync_tts_chars_total_from_content
+    _repair_tts_chars_total(conn, chapter_id, content, row)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 389, in _repair_tts_chars_total
+    conn.execute(
+sqlite3.OperationalError: database is locked
+
+--- 2026-09-02T08:39:57.041805+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 669, in crawl_novel
+    upsert_chapter(novel_id, ch.site_id, idx, ch.title, content)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 247, in upsert_chapter
+    sync_tts_chars_total_from_content(chapter_id, content, db_path=db_path)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 413, in sync_tts_chars_total_from_content
+    _repair_tts_chars_total(conn, chapter_id, content, row)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 389, in _repair_tts_chars_total
+    conn.execute(
+sqlite3.OperationalError: database is locked
+
+--- 2026-09-02T08:41:20.747754+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 669, in crawl_novel
+    upsert_chapter(novel_id, ch.site_id, idx, ch.title, content)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 247, in upsert_chapter
+    sync_tts_chars_total_from_content(chapter_id, content, db_path=db_path)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 413, in sync_tts_chars_total_from_content
+    _repair_tts_chars_total(conn, chapter_id, content, row)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 389, in _repair_tts_chars_total
+    conn.execute(
+sqlite3.OperationalError: database is locked
+
+--- 2026-09-02T08:42:39.416562+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 586, in crawl_novel
+    page.goto(first_ch.url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.goto: net::ERR_ABORTED at https://sangtacviet.com/truyen/fanqie/1/7627737816302111769/7645990868633010750/
+Call log:
+navigating to "https://sangtacviet.com/truyen/fanqie/1/7627737816302111769/7645990868633010750/", waiting until "domcontentloaded"
+
+
+--- 2026-09-02T08:44:02.058644+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 555, in crawl_novel
+    chapters, vip_count = _get_chapter_list_with_retry(page, context, novel_url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 423, in _get_chapter_list_with_retry
+    return _get_chapter_list(page, novel_url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 373, in _get_chapter_list
+    result = page.evaluate(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 8514, in evaluate
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 469, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 278, in evaluate
+    await self._channel.send(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:234:30), <anonymous>:2:32)
+    at UtilityScript.evaluate (<anonymous>:241:19)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+--- 2026-09-02T08:45:01.234425+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 669, in crawl_novel
+    upsert_chapter(novel_id, ch.site_id, idx, ch.title, content)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 247, in upsert_chapter
+    sync_tts_chars_total_from_content(chapter_id, content, db_path=db_path)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 413, in sync_tts_chars_total_from_content
+    _repair_tts_chars_total(conn, chapter_id, content, row)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\db.py", line 389, in _repair_tts_chars_total
+    conn.execute(
+sqlite3.OperationalError: database is locked
+
+--- 2026-09-02T08:48:31.763627+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 488, in crawl_novel
+    raise ValueError("URL phải thuộc sangtacviet.com")
+ValueError: URL phải thuộc sangtacviet.com
+
+--- 2026-09-02T08:50:09.535205+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 649, in crawl_novel
+    page.goto(ch.url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.goto: net::ERR_ABORTED at https://sangtacviet.com/truyen/fanqie/1/7627737816302111769/7646312122485326398/
+Call log:
+navigating to "https://sangtacviet.com/truyen/fanqie/1/7627737816302111769/7646312122485326398/", waiting until "domcontentloaded"
+
+
+--- 2026-09-02T08:56:37.221315+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 820, in main
+    quiet: bool = False,
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 678, in crawl_novel
+    chapters = _chapters_from_db(novel_url, db_chapters)
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 14213, in close
+    return mapping.from_maybe_impl(self._sync(self._impl_obj.close(reason=reason)))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 192, in close
+    raise e
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 189, in close
+    await self._channel.send("close", {"reason": reason})
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+Exception: Browser.close: Connection closed while reading from the driver
+
+--- 2026-09-02T09:06:49.283575+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 932, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 790, in crawl_novel
+    browser.close()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 14213, in close
+    return mapping.from_maybe_impl(self._sync(self._impl_obj.close(reason=reason)))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 192, in close
+    raise e
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 189, in close
+    await self._channel.send("close", {"reason": reason})
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+Exception: Browser.close: Connection closed while reading from the driver
+
+--- 2026-09-02T10:31:42.046361+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 932, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 759, in crawl_novel
+    _goto_chapter(page, context, ch.url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 285, in _goto_chapter
+    page.goto(url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.goto: Timeout 60000ms exceeded.
+Call log:
+navigating to "https://sangtacviet.com/truyen/fanqie/1/7627737816302111769/7668320367915581977/", waiting until "domcontentloaded"
+

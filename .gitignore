@@ -1,0 +1,15 @@
+# OAuth / secrets
+client_secret.json
+credentials.json
+token.json
+
+# Runtime data
+novels.db
+browser_state.json
+output/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/

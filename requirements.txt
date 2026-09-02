@@ -1,0 +1,13 @@
+playwright>=1.40.0
+# stealth v2 (gộp script, ổn hơn) cần Python >=3.9; v1 vẫn chạy trên 3.8 (browser_stealth gộp script)
+playwright-stealth>=1.0.6,<2.0.0; python_version < "3.9"
+playwright-stealth>=2.0.0; python_version >= "3.9"
+edge-tts>=6.1.0
+pydub>=0.25.1
+python-vlc>=3.0.0
+google-api-python-client>=2.100.0
+google-auth-oauthlib>=1.2.0
+google-auth-httplib2>=0.2.0
+# pydub + ffmpeg (tùy chọn): ghép chunk chất lượng cao hơn; không có vẫn chạy được
+# Cài ffmpeg: winget install Gyan.FFmpeg
+# Player cần VLC: winget install VideoLAN.VLC

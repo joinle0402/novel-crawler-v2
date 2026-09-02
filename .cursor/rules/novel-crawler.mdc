@@ -1,0 +1,53 @@
+---
+description: Bản đồ và quy ước project novel-crawler-v2 (sangtacviet → SQLite → MP3)
+alwaysApply: true
+---
+
+# novel-crawler-v2
+
+Crawler truyện **sangtacviet.com** bằng Playwright (headed, captcha thủ công), lưu SQLite, TTS edge-tts, console menu, phát MP3 VLC, upload Google Drive.
+
+## File map
+
+| File | Vai trò |
+|------|---------|
+| `main.py` | Entry point → `console/menu.py` |
+| `console/` | Menu, prompts, views, actions, **jobs.py** (JobManager) |
+| `chapter_range.py` | Parser phạm vi chương (Crawl/TTS/Player/Upload) |
+| `crawler.py` | Cào: browser → metadata → API chapter list → nội dung |
+| `tts.py` | edge-tts, chunk, BGM; 1 MP3/chương → `output/mp3/{tên}/` |
+| `player.py` | VLC `PlayerSession` nền + lưu vị trí nghe |
+| `drive_upload.py` | OAuth + upload MP3 → Google Drive |
+| `db.py` | SQLite; crawl/tts status, `tts_chars_*`, `playback_state` |
+| `config.py` | URL, MAX_CHAPTERS, TTS, BGM, GDRIVE_*, selector, timeout |
+| `selector.txt` | Ghi chú selector/HTML tham khảo site |
+
+## Luồng dữ liệu
+
+1. `python main.py` — cào/TTS/nghe/upload **chạy nền**; menu 3 điều khiển phát, menu 7 xem job
+2. Hoặc `crawler.py` CLI trực tiếp → captcha → API chapter list
+3. Cào chương miễn phí → DB (`crawl_status`)
+4. TTS nền (max 1 truyện) → `processing` + progress ký tự → MP3
+5. Nghe: `PlayerSession` nền + `playback_state`
+6. Upload Drive (menu 8): OAuth → `{GDRIVE_ROOT_FOLDER}/{tên_truyện}/`
+
+## Chapter range
+
+Cào/TTS: Enter = `1..MAX_CHAPTERS`; `all` = hết miễn phí; `10` = 1–10; `5-10`, `1,2,3`, `1-3,6`.
+
+Upload Drive (menu 8): Enter = **tất cả có MP3**; còn lại giống parser (`5-10`, `1,2,3`, `all`).
+
+## Config quan trọng
+
+- `HEADLESS = False` — captcha
+- `MAX_CHAPTERS` — default range cào/TTS khi Enter
+- `TTS_VOICE`, `TTS_RATE`, `BGM_PATH`
+- `GDRIVE_ENABLED`, `GDRIVE_CREDENTIALS`, `GDRIVE_TOKEN`, `GDRIVE_ROOT_FOLDER`, `GDRIVE_AUTO_AFTER_TTS`
+- Chương VIP bị bỏ qua
+
+## Quy ước code
+
+- Logic menu trong `console/`, không gom vào `main.py`
+- Giữ Playwright sync API; selector từ `config.SELECTORS`
+- DB: `novels.db`; không commit output/MP3, `client_secret.json`, `token.json` trừ khi được yêu cầu
+- Sửa tối thiểu; dataclass, type hints, log tiếng Việt
