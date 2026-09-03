@@ -2,14 +2,14 @@
 
 # Dán URL truyện vào đây, ví dụ:
 # https://sangtacviet.com/truyen/69shu/1/53962/
-NOVEL_URL = "https://sangtacviet.com/truyen/fanqie/1/7627737816302111769"
+NOVEL_URL = "https://sangtacviet.com/truyen/69shu/1/87532/"
 
 # Giới hạn số chương cào (để test). Đặt None để cào hết chương miễn phí.
-MAX_CHAPTERS = 10
+MAX_CHAPTERS = 50
 
 # Delay giữa các chương (giây) — random trong [MIN, MAX] để giảm rate-limit
-DELAY_BETWEEN_CHAPTERS_MIN = 8
-DELAY_BETWEEN_CHAPTERS_MAX = 15
+DELAY_BETWEEN_CHAPTERS_MIN = 10
+DELAY_BETWEEN_CHAPTERS_MAX = 17
 # Nghỉ dài sau mỗi N chương đã cào thành công trong phiên
 CRAWL_BATCH_EVERY = 10
 CRAWL_BATCH_PAUSE_SEC = 60

@@ -88,6 +88,12 @@ _FORBIDDEN_MARKERS = (
     "access is denied",
 )
 
+# Thông báo lỗi máy chủ tạm thời — nội dung chưa sẵn sàng, cần reload
+_SERVER_TEMP_ERROR_MARKERS = (
+    "các bạn không cần báo lỗi này",
+    "sẽ mất vài giờ để máy chủ tự khắc phục",
+)
+
 
 def _normalize_novel_url(url: str) -> str:
     url = url.strip()
@@ -209,8 +215,14 @@ def _get_content_box(page: Page):
     return _with_navigation_retry(page, _find)
 
 
+def _has_server_temp_error(text: str) -> bool:
+    """True nếu nội dung chứa thông báo lỗi máy chủ tạm thời."""
+    lower = text.lower()
+    return any(marker in lower for marker in _SERVER_TEMP_ERROR_MARKERS)
+
+
 def _content_ready(page: Page) -> bool:
-    """True nếu contentbox đã có nội dung thật (không loading/placeholder)."""
+    """True nếu contentbox đã có nội dung thật (không loading/placeholder/lỗi server tạm)."""
     if _is_forbidden_page(page):
         return False
     loading = SELECTORS["loading_text"]
@@ -219,6 +231,8 @@ def _content_ready(page: Page) -> bool:
     if not box:
         return False
     text = box.inner_text().strip()
+    if _has_server_temp_error(text):
+        return False
     return bool(
         text
         and loading not in text
@@ -320,8 +334,12 @@ def _wait_for_content(page: Page) -> None:
                 if _content_ready(page):
                     return
                 box = _get_content_box(page)
-                if box and loading in box.inner_text():
-                    pass  # vẫn đang tải — tiếp tục poll
+                if box:
+                    box_text = box.inner_text()
+                    if _has_server_temp_error(box_text):
+                        pass  # lỗi máy chủ tạm thời — chờ reload
+                    elif loading in box_text:
+                        pass  # vẫn đang tải — tiếp tục poll
             except PlaywrightError as exc:
                 if not _is_navigation_error(exc):
                     raise
@@ -333,7 +351,14 @@ def _wait_for_content(page: Page) -> None:
             raise CrawlForbiddenError("403 Forbidden — bỏ qua reload.")
 
         if reload_attempt < MAX_CONTENT_RELOADS:
-            print(f"  Vẫn thấy '{loading}' — reload trang (lần {reload_attempt + 1})...")
+            # Kiểm tra lý do reload để log phù hợp
+            _box = _get_content_box(page)
+            _box_text = _box.inner_text() if _box else ""
+            if _has_server_temp_error(_box_text):
+                print(f"  Máy chủ đang lỗi tạm thời — chờ 3s rồi reload (lần {reload_attempt + 1})...")
+                time.sleep(3)
+            else:
+                print(f"  Vẫn thấy '{loading}' — reload trang (lần {reload_attempt + 1})...")
             page.reload(wait_until="domcontentloaded")
             _wait_page_settle(page)
             _select_vietnamese(page)
@@ -427,7 +452,12 @@ def _extract_chapter_content(page: Page) -> str:
         }"""
         )
 
-    return _with_navigation_retry(page, _extract)
+    result = _with_navigation_retry(page, _extract)
+    if _has_server_temp_error(result):
+        raise RuntimeError(
+            "Nội dung chương chứa thông báo lỗi máy chủ tạm thời — cần reload lại."
+        )
+    return result
 
 
 def _parse_chapter_list_data(raw: str, novel_url: str) -> tuple[list[ChapterInfo], int]:
@@ -761,10 +791,14 @@ def crawl_novel(
                 _wait_for_content_with_captcha(page, context, ch.url)
 
                 content = _extract_chapter_content(page)
-                if not content or SELECTORS["loading_text"] in content:
-                    _wait_for_user("Nội dung chưa load. Giải captcha nếu cần.")
-                    _save_browser_state(context)
-                    _wait_for_content_with_captcha(page, context, ch.url)
+                if not content or SELECTORS["loading_text"] in content or _has_server_temp_error(content):
+                    if _has_server_temp_error(content):
+                        print("  Nội dung lỗi máy chủ tạm thời — chờ reload lại...")
+                        _wait_for_content_with_captcha(page, context, ch.url)
+                    else:
+                        _wait_for_user("Nội dung chưa load. Giải captcha nếu cần.")
+                        _save_browser_state(context)
+                        _wait_for_content_with_captcha(page, context, ch.url)
                     content = _extract_chapter_content(page)
 
                 if not content:
