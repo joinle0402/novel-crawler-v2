@@ -435,6 +435,7 @@ def print_config() -> None:
         ("CRAWL_BATCH_EVERY", config.CRAWL_BATCH_EVERY),
         ("CRAWL_BATCH_PAUSE_SEC", config.CRAWL_BATCH_PAUSE_SEC),
         ("CRAWL_403_COOLDOWN_SEC", config.CRAWL_403_COOLDOWN_SEC),
+        ("CRAWL_VISIT_NOVEL_PAGE", config.CRAWL_VISIT_NOVEL_PAGE),
 
         ("TTS_VOICE", config.TTS_VOICE),
 

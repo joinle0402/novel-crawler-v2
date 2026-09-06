@@ -214,3 +214,207 @@ playwright._impl._errors.TimeoutError: Page.goto: Timeout 60000ms exceeded.
 Call log:
 navigating to "https://sangtacviet.com/truyen/fanqie/1/7627737816302111769/7668320367915581977/", waiting until "domcontentloaded"
 
+
+--- 2026-09-03T15:46:16.391372+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 824, in crawl_novel
+    browser.close()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 14213, in close
+    return mapping.from_maybe_impl(self._sync(self._impl_obj.close(reason=reason)))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 192, in close
+    raise e
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 189, in close
+    await self._channel.send("close", {"reason": reason})
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+Exception: Browser.close: Connection closed while reading from the driver
+
+--- 2026-09-04T00:05:47.111613+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 824, in crawl_novel
+    browser.close()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 14213, in close
+    return mapping.from_maybe_impl(self._sync(self._impl_obj.close(reason=reason)))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 192, in close
+    raise e
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_browser.py", line 189, in close
+    await self._channel.send("close", {"reason": reason})
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+Exception: Browser.close: Connection closed while reading from the driver
+
+--- 2026-09-04T12:01:31.235761+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 789, in crawl_novel
+    _goto_chapter(page, context, ch.url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 299, in _goto_chapter
+    page.goto(url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.goto: Timeout 60000ms exceeded.
+Call log:
+navigating to "https://sangtacviet.com/truyen/fanqie/1/7481496454264015897/7669679586740814361/", waiting until "domcontentloaded"
+
+
+--- 2026-09-04T12:12:30.588487+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 726, in crawl_novel
+    page.goto(first_ch.url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.goto: net::ERR_ABORTED at https://sangtacviet.com/truyen/fanqie/1/7481496454264015897/7669679586740814361/
+Call log:
+navigating to "https://sangtacviet.com/truyen/fanqie/1/7481496454264015897/7669679586740814361/", waiting until "domcontentloaded"
+
+
+--- 2026-09-04T12:34:51.199924+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 789, in crawl_novel
+    _goto_chapter(page, context, ch.url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 299, in _goto_chapter
+    page.goto(url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.goto: Timeout 60000ms exceeded.
+Call log:
+navigating to "https://sangtacviet.com/truyen/fanqie/1/7481496454264015897/7670799501438747161/", waiting until "domcontentloaded"
+
+
+--- 2026-09-04T12:38:45.650759+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 737, in crawl_novel
+    page.goto(novel_url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.goto: Target page, context or browser has been closed
+
+--- 2026-09-04T12:41:12.427099+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 737, in crawl_novel
+    page.goto(novel_url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.goto: Target page, context or browser has been closed
+
+--- 2026-09-04T12:45:16.505767+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 789, in crawl_novel
+    _goto_chapter(page, context, ch.url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 296, in _goto_chapter
+    _recover_from_forbidden(page, context, url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 281, in _recover_from_forbidden
+    page.goto(url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.goto: net::ERR_CONNECTION_CLOSED at https://sangtacviet.com/truyen/fanqie/1/7481496454264015897/7670799501438747161/
+Call log:
+navigating to "https://sangtacviet.com/truyen/fanqie/1/7481496454264015897/7670799501438747161/", waiting until "domcontentloaded"
+
+
+--- 2026-09-04T13:04:11.149778+00:00 ---
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 966, in main
+    crawl_novel(
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 791, in crawl_novel
+    _wait_for_content_with_captcha(page, context, ch.url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 576, in _wait_for_content_with_captcha
+    _recover_from_forbidden(page, context, chapter_url)
+  File "C:\Users\ASUS\Desktop\workspace\python\novel-crawler-v2\crawler.py", line 281, in _recover_from_forbidden
+    page.goto(url, wait_until="domcontentloaded")
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\sync_api\_generated.py", line 9002, in goto
+    self._sync(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_page.py", line 553, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_frame.py", line 145, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "C:\Users\ASUS\.pyenv\pyenv-win\versions\3.8.10\lib\site-packages\playwright\_impl\_connection.py", line 520, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.goto: Target page, context or browser has been closed

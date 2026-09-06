@@ -2,9 +2,9 @@
 Crawler sangtacviet.com dùng Playwright.
 
 Luồng:
-1. Mở trình duyệt (headed) tới URL truyện
-2. Người dùng giải captcha nếu có, nhấn Enter
-3. Cào metadata + danh sách chương miễn phí (bỏ qua VIP)
+1. Mở trình duyệt (headed)
+2. Trang danh sách truyện chỉ khi CRAWL_VISIT_NOVEL_PAGE=True hoặc DB thiếu list chương
+3. Người dùng giải captcha trên trang chương nếu có, nhấn Enter
 4. Cào nội dung từng chương (chờ load xong)
 5. Lưu SQLite, sau đó tạo MP3
 """
@@ -46,6 +46,7 @@ from config import (
     CRAWL_403_COOLDOWN_SEC,
     CRAWL_BATCH_EVERY,
     CRAWL_BATCH_PAUSE_SEC,
+    CRAWL_VISIT_NOVEL_PAGE,
     DELAY_BETWEEN_CHAPTERS_MAX,
     DELAY_BETWEEN_CHAPTERS_MIN,
     HEADLESS,
@@ -63,6 +64,7 @@ from db import (
     get_chapters_for_novel,
     get_latest_novel,
     get_novel_by_id,
+    get_novel_by_url,
     init_db,
     update_crawl_status,
     upsert_chapter,
@@ -675,23 +677,66 @@ def crawl_novel(
         )
         page.set_default_timeout(BROWSER_TIMEOUT_MS)
 
-        print("Đang mở trang truyện (đọc metadata)...")
-        page.goto(novel_url, wait_until="domcontentloaded")
-        page.wait_for_timeout(1500)
+        # Metadata từ DB nếu đã có (tránh mở trang danh sách khi không cần)
+        title = ""
+        author = ""
+        summary = ""
+        if novel_id is None:
+            existing_novel = get_novel_by_url(novel_url)
+            if existing_novel:
+                novel_id = existing_novel.id
+                title = existing_novel.title or ""
+                author = existing_novel.author or ""
+                summary = existing_novel.summary or ""
+        else:
+            existing_novel = get_novel_by_id(novel_id)
+            if existing_novel:
+                title = existing_novel.title or ""
+                author = existing_novel.author or ""
+                summary = existing_novel.summary or ""
 
-        title = _text_or_empty(page, SELECTORS["book_title"])
-        author = _text_or_empty(page, SELECTORS["book_author"])
-        summary = _text_or_empty(page, SELECTORS["book_summary"])
-
-        novel_id = upsert_novel(
-            novel_url,
-            title or "Đang tải...",
-            author,
-            summary,
+        need_chapter_list_api = (
+            novel_id is None
+            or _needs_chapter_list_api(novel_id, required_numbers)
         )
+        # False = thẳng trang chương nếu DB đủ list; vẫn mở danh sách khi thiếu list
+        visit_novel_page = CRAWL_VISIT_NOVEL_PAGE or need_chapter_list_api
+
+        if visit_novel_page:
+            reason = (
+                "thiếu danh sách chương trong DB"
+                if need_chapter_list_api
+                else "CRAWL_VISIT_NOVEL_PAGE=True"
+            )
+            print(f"Đang mở trang truyện (đọc metadata) — {reason}...")
+            page.goto(novel_url, wait_until="domcontentloaded")
+            page.wait_for_timeout(1500)
+
+            title = _text_or_empty(page, SELECTORS["book_title"]) or title
+            author = _text_or_empty(page, SELECTORS["book_author"]) or author
+            summary = _text_or_empty(page, SELECTORS["book_summary"]) or summary
+
+            novel_id = upsert_novel(
+                novel_url,
+                title or "Đang tải...",
+                author,
+                summary,
+            )
+        else:
+            assert novel_id is not None
+            print(
+                "Bỏ qua trang danh sách (CRAWL_VISIT_NOVEL_PAGE=False) "
+                "— dùng metadata + list chương từ DB."
+            )
+            novel_id = upsert_novel(
+                novel_url,
+                title or "Đang tải...",
+                author,
+                summary,
+            )
 
         vip_count = 0
-        if _needs_chapter_list_api(novel_id, required_numbers):
+        if need_chapter_list_api:
             chapters, vip_count = _get_chapter_list_with_retry(page, context, novel_url)
             if not chapters:
                 raise RuntimeError(
@@ -733,7 +778,8 @@ def crawl_novel(
         )
         _save_browser_state(context)
 
-        if not title:
+        if not title or title == "Đang tải...":
+            print("Đang mở trang truyện để bổ sung tên / metadata...")
             page.goto(novel_url, wait_until="domcontentloaded")
             _wait_page_settle(page)
             title = _text_or_empty(page, SELECTORS["book_title"])

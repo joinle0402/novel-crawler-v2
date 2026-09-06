@@ -178,6 +178,7 @@ CLI: `range_to_text(chapter_range)` → `"1-10"` hoặc `"all"`.
 | `TTS_CHUNK_SIZE` | 1000 | Ký tự/chunk; progress theo chunk |
 | `BGM_PATH` | file mp3 hoặc None | Nhạc nền sau TTS |
 | `HEADLESS` | False | Bắt buộc False để captcha |
+| `CRAWL_VISIT_NOVEL_PAGE` | False | True = luôn mở trang danh sách; False = thẳng trang chương nếu DB đã có list |
 | `BROWSER_STATE_PATH` | browser_state.json | Session Playwright |
 | `GDRIVE_ENABLED` | True | Tắt → menu 8 báo disabled |
 | `GDRIVE_CREDENTIALS` | client_secret.json | OAuth Desktop credentials |

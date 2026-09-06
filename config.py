@@ -2,19 +2,23 @@
 
 # Dán URL truyện vào đây, ví dụ:
 # https://sangtacviet.com/truyen/69shu/1/53962/
-NOVEL_URL = "https://sangtacviet.com/truyen/69shu/1/87532/"
+NOVEL_URL = "https://sangtacviet.com/truyen/fanqie/1/7481496454264015897/"
 
-# Giới hạn số chương cào (để test). Đặt None để cào hết chương miễn phí.
-MAX_CHAPTERS = 50
+# Giới hạn mặc định khi Enter (phiên nhỏ = an toàn hơn). Đặt None = hết miễn phí.
+# 50 chương: chia range 1-10, 11-20... nhiều phiên, nghỉ vài giờ giữa phiên.
+MAX_CHAPTERS = 10
 
-# Delay giữa các chương (giây) — random trong [MIN, MAX] để giảm rate-limit
+# Delay giữa các chương (giây) — random [MIN, MAX]; chậm hơn = ít rate-limit
 DELAY_BETWEEN_CHAPTERS_MIN = 10
-DELAY_BETWEEN_CHAPTERS_MAX = 17
+DELAY_BETWEEN_CHAPTERS_MAX = 20
 # Nghỉ dài sau mỗi N chương đã cào thành công trong phiên
-CRAWL_BATCH_EVERY = 10
-CRAWL_BATCH_PAUSE_SEC = 60
-# Chờ trước khi thử lại sau 403 (site thường unblock sau vài phút)
-CRAWL_403_COOLDOWN_SEC = 90
+CRAWL_BATCH_EVERY = 5
+CRAWL_BATCH_PAUSE_SEC = 180  # 3 phút
+# Chờ trước khi thử lại sau 403 (ban tạm có thể vài phút–vài giờ)
+CRAWL_403_COOLDOWN_SEC = 300  # 5 phút
+# True = luôn mở trang danh sách truyện trước; False = bỏ qua nếu DB đã có list chương
+# (vẫn mở trang danh sách khi DB chưa có novel/list chương)
+CRAWL_VISIT_NOVEL_PAGE = False
 
 # SQLite
 DB_PATH = "novels.db"
@@ -39,7 +43,7 @@ BGM_EXPORT_BITRATE = "128k"
 
 # TTS — edge-tts (miễn phí, giọng neural tiếng Việt)
 TTS_VOICE = "vi-VN-HoaiMyNeural"  # giọng nữ
-TTS_RATE = "+100%"  # ~1.5x tốc độ
+TTS_RATE = "+50%"  # ~1.5x tốc độ
 
 # Playwright
 HEADLESS = False  # False để người dùng giải captcha
@@ -50,23 +54,23 @@ BROWSER_TIMEZONE = "Asia/Ho_Chi_Minh"
 BROWSER_MAXIMIZED = True  # mở Chrome full màn hình khi cào
 BROWSER_TIMEOUT_MS = 60_000
 CONTENT_LOAD_TIMEOUT_MS = 120_000
-# Chờ nội dung chương tối đa bao lâu trước khi F5 reload
-CONTENT_RELOAD_AFTER_SEC = 45
-MAX_CONTENT_RELOADS = 2
+# Chờ nội dung chương tối đa bao lâu trước khi F5 reload (ít F5 = ít bị flag)
+CONTENT_RELOAD_AFTER_SEC = 60
+MAX_CONTENT_RELOADS = 1
 
 # Số chương TTS chạy song song (edge-tts) — quá cao dễ bị rate-limit
-TTS_CONCURRENCY = 2
+TTS_CONCURRENCY = 1
 
 # Retry TTS khi edge-tts lỗi (exponential backoff: 2s, 4s, ...)
 TTS_MAX_RETRIES = 3
 
 # Nghỉ giữa các request edge-tts (giây) — tránh NoAudioReceived
-TTS_REQUEST_DELAY_SEC = 0.3
+TTS_REQUEST_DELAY_SEC = 1.0
 
 # Chia nội dung dài thành chunk trước khi TTS (ffmpeg tùy chọn cho ghép)
 ENABLE_TTS_CHUNK = True
 TTS_CHUNK_SIZE = 1000  # ký tự mỗi chunk
-TTS_CHUNK_CONCURRENCY = 3  # số chunk TTS song song trong 1 chương
+TTS_CHUNK_CONCURRENCY = 1  # số chunk TTS song song trong 1 chương
 
 # Lưu session Playwright sau captcha (tái sử dụng lần sau)
 BROWSER_STATE_PATH = "browser_state.json"

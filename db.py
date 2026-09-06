@@ -512,6 +512,30 @@ def get_novel_by_id(novel_id: int, db_path: str = DB_PATH) -> Novel | None:
     )
 
 
+def get_novel_by_url(url: str, db_path: str = DB_PATH) -> Novel | None:
+    """Tìm novel theo URL (thử cả biến thể có/không trailing slash)."""
+    candidates = [url]
+    if url.endswith("/"):
+        candidates.append(url.rstrip("/"))
+    else:
+        candidates.append(url + "/")
+    with get_db(db_path) as conn:
+        for candidate in candidates:
+            row = conn.execute(
+                "SELECT id, url, title, author, summary FROM novels WHERE url = ?",
+                (candidate,),
+            ).fetchone()
+            if row:
+                return Novel(
+                    id=row["id"],
+                    url=row["url"],
+                    title=row["title"],
+                    author=row["author"],
+                    summary=row["summary"],
+                )
+    return None
+
+
 def list_novels(db_path: str = DB_PATH) -> list[Novel]:
     with get_db(db_path) as conn:
         rows = conn.execute(
